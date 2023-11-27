@@ -1,0 +1,184 @@
+# Chain of Thought Prompting
+
+## Test Case 1
+
+Problem:
+
+Consider a traffic control scenario at a four-way intersection. The traffic conditions are as follows:
+
+- North Direction: 6 vehicles for through/right, 1 vehicles for left, 2 cycle wait for through/right, 4 cycles wait for left, 1 pedestrians waiting, 5 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- South Direction: 2 vehicles for through/right, 9 vehicles for left, 4 cycle wait for through/right, 4 cycles wait for left, 5 pedestrians waiting, 3 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- East Direction: 3 vehicles for through/right, 3 vehicles for left, 4 cycle wait for through/right, 2 cycles wait for left, 7 pedestrians waiting, 3 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- West Direction: 0 vehicles for through/right, 7 vehicles for left, 3 cycle wait for through/right, 0 cycles wait for left, 2 pedestrians waiting, 2 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+
+Based on these conditions, which direction should be prioritized for the next signal change to optimize traffic flow, considering vehicle and pedestrian wait times, counts, and the presence of emergency vehicles?
+
+Solution:
+
+To optimize traffic flow at this intersection, considering vehicle and pedestrian wait times, counts, and the absence of emergency vehicles, we need to analyze the provided data for each direction:
+
+North Direction:
+
+Vehicles waiting for through/right: 6 (2 cycle wait)
+Vehicles waiting for left: 1 (4 cycle wait)
+Pedestrians waiting: 1 (5 cycles since last pedestrian)
+South Direction:
+
+Vehicles waiting for through/right: 2 (4 cycle wait)
+Vehicles waiting for left: 9 (4 cycle wait)
+Pedestrians waiting: 5 (3 cycles since last pedestrian)
+East Direction:
+
+Vehicles waiting for through/right: 3 (4 cycle wait)
+Vehicles waiting for left: 3 (2 cycle wait)
+Pedestrians waiting: 7 (3 cycles since last pedestrian)
+West Direction:
+
+Vehicles waiting for through/right: 0 (3 cycle wait)
+Vehicles waiting for left: 7 (0 cycle wait)
+Pedestrians waiting: 2 (2 cycles since last pedestrian)
+Prioritization should consider both the number of vehicles and pedestrians waiting and the duration of their wait. Key points to note:
+
+South Direction has a significant number of vehicles (11 total) with a moderate wait time of 4 cycles for both through/right and left turns, and a relatively high number of pedestrians waiting (5).
+East Direction, while having fewer vehicles (6 total), has the highest number of pedestrians waiting (7), with moderate vehicle wait times.
+North and West Directions have longer wait times for certain maneuvers (4 cycles for left in North, 3 cycles for through/right in West), but their total vehicle and pedestrian counts are lower than South and East.
+Given these considerations, the South Direction should be prioritized for the next signal change. This decision is based on the high number of vehicles waiting for left turns (which are typically more congested), combined with a significant number of pedestrians waiting. This approach aims to clear the largest backlog of vehicles and accommodate a substantial pedestrian crowd, thereby improving overall traffic flow and safety at the intersection.
+
+Further Problem:
+
+We are following the North American Traffic control system, Meaning we can open either North south through and right langes, north south left lanes, east west through right lanes, east west left lanes. Now make your decision. 
+
+Refined Solution:
+
+Under the North American traffic control system, where we can control either north-south or east-west directions, and specifically through/right or left lanes, let's reconsider the situation:
+
+North-South Through/Right:
+
+North: 6 vehicles (2 cycle wait)
+South: 2 vehicles (4 cycle wait)
+Total: 8 vehicles
+North-South Left:
+
+North: 1 vehicle (4 cycle wait)
+South: 9 vehicles (4 cycle wait)
+Total: 10 vehicles
+East-West Through/Right:
+
+East: 3 vehicles (4 cycle wait)
+West: 0 vehicles (3 cycle wait)
+Total: 3 vehicles
+East-West Left:
+
+East: 3 vehicles (2 cycle wait)
+West: 7 vehicles (0 cycle wait)
+Total: 10 vehicles
+Considering this setup:
+
+North-South Left Lanes have the highest number of vehicles waiting (10 vehicles), and all have been waiting for 4 cycles. This direction would clear a significant number of vehicles.
+East-West Left Lanes also have 10 vehicles waiting, but the wait times are varied (2 cycles for East and 0 for West). However, prioritizing this direction might not be as efficient due to the shorter wait times.
+North-South Through/Right Lanes and East-West Through/Right Lanes have fewer vehicles waiting in comparison.
+Given this analysis, the best choice to optimize traffic flow would be to prioritize the North-South Left Lanes. This decision would address the largest number of vehicles waiting for the longest duration, which is most likely to ease traffic congestion effectively.
+
+Problem:
+
+Consider a traffic control scenario at a four-way intersection. The traffic conditions are as follows:
+
+- North Direction: 9 vehicles for through/right, 2 vehicles for left, 1 cycle wait for through/right, 0 cycles wait for left, 0 pedestrians waiting, 3 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- South Direction: 13 vehicles for through/right, 6 vehicles for left, 4 cycle wait for through/right, 1 cycles wait for left, 4 pedestrians waiting, 4 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- East Direction: 5 vehicles for through/right, 4 vehicles for left, 2 cycle wait for through/right, 1 cycles wait for left, 6 pedestrians waiting, 4 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- West Direction: 20 vehicles for through/right, 6 vehicles for left, 5 cycle wait for through/right, 3 cycles wait for left, 4 pedestrians waiting, 5 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+
+Based on these conditions, which direction should be prioritized for the next signal change to optimize traffic flow, considering vehicle and pedestrian wait times, counts, and the presence of emergency vehicles?
+
+
+## Test Case 2
+
+Problem:
+
+Consider a traffic control scenario at a four-way intersection. The traffic conditions are as follows:
+
+- North Direction: 9 vehicles for through/right, 2 vehicles for left, 1 cycle wait for through/right, 0 cycles wait for left, 0 pedestrians waiting, 3 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- South Direction: 13 vehicles for through/right, 6 vehicles for left, 4 cycle wait for through/right, 1 cycles wait for left, 4 pedestrians waiting, 4 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- East Direction: 5 vehicles for through/right, 4 vehicles for left, 2 cycle wait for through/right, 1 cycles wait for left, 6 pedestrians waiting, 4 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- West Direction: 20 vehicles for through/right, 6 vehicles for left, 5 cycle wait for through/right, 3 cycles wait for left, 4 pedestrians waiting, 5 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+
+Based on these conditions, which direction should be prioritized for the next signal change to optimize traffic flow, considering vehicle and pedestrian wait times, counts, and the presence of emergency vehicles?
+
+Solution:
+
+To optimize traffic flow at this four-way intersection, considering vehicle and pedestrian wait times, counts, and the absence of emergency vehicles, let's analyze each direction:
+
+North Direction:
+
+Vehicles for through/right: 9 (1 cycle wait)
+Vehicles for left: 2 (0 cycles wait)
+Pedestrians waiting: 0 (3 cycles since last pedestrian)
+South Direction:
+
+Vehicles for through/right: 13 (4 cycle wait)
+Vehicles for left: 6 (1 cycle wait)
+Pedestrians waiting: 4 (4 cycles since last pedestrian)
+East Direction:
+
+Vehicles for through/right: 5 (2 cycle wait)
+Vehicles for left: 4 (1 cycle wait)
+Pedestrians waiting: 6 (4 cycles since last pedestrian)
+West Direction:
+
+Vehicles for through/right: 20 (5 cycle wait)
+Vehicles for left: 6 (3 cycles wait)
+Pedestrians waiting: 4 (5 cycles since last pedestrian)
+Prioritization should consider the number of vehicles, their wait times, and the number of pedestrians waiting. Key observations:
+
+West Direction has the highest number of vehicles waiting (26 total), with the longest wait time for through/right vehicles (5 cycles). It also has a significant number of pedestrians waiting.
+South Direction also has a significant number of vehicles waiting (19 total) and a moderate number of pedestrians.
+North and East Directions have fewer vehicles waiting and shorter wait times compared to the West and South Directions.
+Given these factors, the West Direction should be prioritized for the next signal change. This decision would address the largest backlog of vehicles, particularly in the through/right lane, which has the longest wait time. Additionally, accommodating pedestrian movements in this direction is also important due to the longer wait time since the last pedestrian crossed. Prioritizing the West Direction aims to ease the most significant congestion and improve safety for both vehicles and pedestrians.
+
+Further Problem:
+
+We are following the North American Traffic control system, Meaning we can open either North south through and right langes, north south left lanes, east west through right lanes, east west left lanes. Now make your decision.
+
+Refined Solution:
+
+Under the North American traffic control system, where we can control either north-south or east-west directions, and specifically through/right or left lanes separately, let's reassess the situation:
+
+North-South Through/Right:
+
+North: 9 vehicles (1 cycle wait)
+South: 13 vehicles (4 cycle wait)
+Total: 22 vehicles
+North-South Left:
+
+North: 2 vehicles (0 cycles wait)
+South: 6 vehicles (1 cycle wait)
+Total: 8 vehicles
+East-West Through/Right:
+
+East: 5 vehicles (2 cycle wait)
+West: 20 vehicles (5 cycle wait)
+Total: 25 vehicles
+East-West Left:
+
+East: 4 vehicles (1 cycle wait)
+West: 6 vehicles (3 cycle wait)
+Total: 10 vehicles
+Considering this setup:
+
+The East-West Through/Right Lanes have the highest total number of vehicles waiting (25 vehicles), with the West direction having a significant backlog and the longest wait time.
+The North-South Through/Right Lanes also have a considerable number of vehicles waiting (22 vehicles), with the South direction experiencing a longer wait time.
+The North-South Left and East-West Left Lanes have fewer vehicles waiting in comparison.
+Given these observations, the best choice to optimize traffic flow would be to prioritize the East-West Through/Right Lanes. This approach will address the largest volume of traffic, particularly in the West direction, which has the longest wait time and a high vehicle count. This decision aims to reduce the most significant congestion and improve overall traffic flow at the intersection.
+
+Problem:
+
+Consider a traffic control scenario at a four-way intersection. The traffic conditions are as follows:
+
+- North Direction: 5 vehicles for through/right, 2 vehicles for left, 0 cycle wait for through/right, 2 cycles wait for left, 7 pedestrians waiting, 3 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- South Direction: 7 vehicles for through/right, 6 vehicles for left, 5 cycle wait for through/right, 3 cycles wait for left, 8 pedestrians waiting, 1 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- East Direction: 3 vehicles for through/right, 8 vehicles for left, 5 cycle wait for through/right, 5 cycles wait for left, 7 pedestrians waiting, 4 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+- West Direction: 6 vehicles for through/right, 5 vehicles for left, 4 cycle wait for through/right, 0 cycles wait for left, 2 pedestrians waiting, 2 cycles wait since last pedestrian, 0 emergency vehicles for through/right, 0 emergency vehicles for left.
+
+Based on these conditions, which direction should be prioritized for the next signal change to optimize traffic flow, considering vehicle and pedestrian wait times, counts, and the presence of emergency vehicles?
+
+Solution:
