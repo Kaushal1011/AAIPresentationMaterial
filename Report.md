@@ -100,9 +100,6 @@ If the evaluation requires, the process is iterated with the addition of the LLM
 ### Step 6: Performance Analysis
 Performance charts are generated to visualize the effectiveness of the model based on the given prompts.
 
-### Conclusion
-The entire process is designed to iteratively test and improve the performance of LLMs in making decisions or predictions, using a combination of different prompting strategies and code-generated test cases.
-
 ### Evaluations
 
 The conversations on which the llms were tested can be found in [conversations](./llm_chats/) folder. The evaluation results can be found in the following [excel sheet](./Evaluating_LLMs_for_Traffic_Control.xlsx). The project was also presented in the class, the presentation can be found [here](./LLMS_for_Traffic_Control_Presentation.pdf).
